@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "063fb05e-d302-462f-8045-251c3add4354",
+		"name": "ONG",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/users/auth/signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "firstName",
+							"value": "testAPI",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "testAPI",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "testAPI@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Password123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"auth",
+						"signup"
+					]
+				},
+				"description": "## Endpoint de registro de usuarios\n\nCon el endpoint **/auth/signup** se pueden registrar los usuarios a la base de datos, llenando los campos correspondientes.  \n\n*   Método de envío de datos:\n    *   POST, para mayor seguridad\n*   Método de encriptación de contraseña\n    *   Bcryptjs\n\nCampos obligatorios:\n\n*   firstName\n*   lastName\n*   email\n*   password\n    \n\nEjemplo:\n\n*   firstName: testFistName\n*   lastName: testLastName\n*   email: test@gmail.com\n*   password: Password1$ (previo a ser encriptada)\n    \n\n### Todos los datos son válidados con el módulo Express-Validator ([https://express-validator.github.io/docs/](https://express-validator.github.io/docs/))\n\n¿Qué se valida de cada campo?\n\n*   firstName\n    *   completar el campo\n    *   ingreso de solo letras y no números\n    *   mayor a 2 caracteres\n*   lastName\n    *   completar el campo\n    *   ingreso de solo letras y no números\n    *   mayor a 2 caracteres\n*   email\n    *   completar el campo\n    *   ingreso de un email válido\n*   password\n    *   completar el campo\n    *   regex que válida que la contraseña deba tener más de 8 caracteres, un número, una letra mayúscula y una letra minúscula, y/o puede tener algún carácter especial"
+			},
+			"response": [
+				{
+					"name": "http://localhost:3000/users/auth/signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Tadeo",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Gavensky",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "tadeog1@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Patatas2121%",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/auth/signup?firstName=testAPI&lastName=testAPI&email=testAPI@gmail.com&password=Password123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"auth",
+								"signup"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "testAPI"
+								},
+								{
+									"key": "lastName",
+									"value": "testAPI"
+								},
+								{
+									"key": "email",
+									"value": "testAPI@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "Password123"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"message\": \"Account created successfully\",\n    \"data\": {\n        \"firstName\": \"testAPI\",\n        \"lastName\": \"testAPI\",\n        \"email\": \"testAPI@gmail.com\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:3000/users/auth/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "testAPI@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Password123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"auth",
+						"login"
+					]
+				},
+				"description": "## Endpoint de logueo de usuarios\n\nCon el endpoint **auth/login** se pueden loguear los usuarios que fueron previamente creados en la base de datos, llenando los campos correspondientes.\n\n*   Método de envío de datos:\n    *   POST, para mayor seguridad\n*   Método de desencriptación de contraseña\n    *   Bcryptjs\n\nCampos obligatorios:\n\n*   email\n*   password\n    \n\nEjemplo:\n\n*   email: [test@gmail.com](https://desktop.postman.com/?desktopVersion=9.15.2&userId=18268919&teamId=0)\n*   password: Password1$ (previo a ser desencriptada, comparando con la que esta en la base)\n    \n\n### Todos los datos son válidados con el módulo Express-Validator ([https://express-validator.github.io/docs/](https://desktop.postman.com/?desktopVersion=9.15.2&userId=18268919&teamId=0))\n\n¿Qué se valida de cada campo?\n\n*   email\n    *   completar el campo\n    *   ingreso de un email válido\n*   password\n    *   completar el campo"
+			},
+			"response": [
+				{
+					"name": "http://localhost:3000/users/auth/login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "tadeog21@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Patatas21%",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/auth/login?email=testAPI@gmail.com&password=Password123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "testAPI@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "Password123"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "16"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"10-6tywfCuytUW27UTZGAkxankrqC4\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Apr 2022 19:01:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"user\": {\r\n        \"id\": 10,\r\n        \"firstName\": \"testAPI\",\r\n        \"lastName\": \"testAPI\",\r\n        \"email\": \"testAPI@gmail.com\",\r\n        \"image\": null,\r\n        \"password\": \"$2a$10$x3cQaXIJTWhK/F62rhfFR.INgp2RIHT3JSr/HkKhDzO/2DTVnjj56\",\r\n        \"roleId\": null,\r\n        \"deletedAt\": null,\r\n        \"createdAt\": \"2022-04-21T19:05:42.000Z\",\r\n        \"updatedAt\": \"2022-04-21T19:05:42.000Z\"\r\n    }\r\n}"
+				}
+			]
+		}
+	]
+}
